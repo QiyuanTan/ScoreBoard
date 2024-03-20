@@ -6,7 +6,7 @@ from board.models import *
 # Create your views here.
 def update_score(request):
     """更新计分板"""
-    race = CurrentRace.objects.get(0).race
+    race = CurrentRace.objects.get(id=1).race
     race_info = {'race': str(race),
                  'score1': str(race.team1_score),
                  'score2': str(race.team2_score),
@@ -16,6 +16,6 @@ def update_score(request):
 
 def update_race(request):
     """更新比赛信息"""
-    race = CurrentRace.objects.get(0).race
-    return JsonResponse({'team1': {'name': str(race.team1_name), 'logo': race.team1.logo},
-                         'team2': {'name': str(race.team2_name), 'logo': race.team2.logo}})
+    race = CurrentRace.objects.get(id=1).race
+    return JsonResponse({'team1': {'name': str(race.team1.name), 'logo_url': race.team1.logo.url},
+                         'team2': {'name': str(race.team2.name), 'logo_url': race.team2.logo.url}})

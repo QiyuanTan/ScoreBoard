@@ -5,4 +5,5 @@ from board import views
 
 urlpatterns = [
     path('update_score/', views.update_score, name='update_score'),
+    path('update_raceinfo/', views.update_race, name='update_race'),
 ]
