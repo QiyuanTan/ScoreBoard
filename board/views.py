@@ -4,12 +4,11 @@ from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
-
 from board.models import *
 
 
 # Create your views here.
-def update_scoreboard(request):
+def update_score(request):
     """更新计分板"""
     race = CurrentRace.objects.get(id=1).race
     race_info = {'race': str(race),
@@ -26,6 +25,10 @@ def update_race(request):
                          'team2': {'name': str(race.team2.name), 'logo_url': race.team2.logo.url}})
 
 
+def display_board(request):
+    """显示比分面板"""
+    return render(request, template_name='board.html')
+
 @csrf_exempt
 @staff_member_required
 def update_score(request):
@@ -41,3 +44,4 @@ def update_score(request):
     race.save()
 
     return "success"
+
