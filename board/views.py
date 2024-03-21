@@ -1,5 +1,9 @@
-from django.http import JsonResponse
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render
+from django.utils.datastructures import MultiValueDictKeyError
+from django.views.decorators.csrf import csrf_exempt
 from board.models import *
 
 
@@ -24,3 +28,20 @@ def update_race(request):
 def display_board(request):
     """显示比分面板"""
     return render(request, template_name='board.html')
+
+@csrf_exempt
+@staff_member_required
+def update_score(request):
+    try:
+        score1_delta = int(request.POST['score1'])
+        score2_delta = int(request.POST['score2'])
+    except MultiValueDictKeyError:
+        return HttpResponseBadRequest()
+
+    race = CurrentRace.objects.get(id=1).race
+    race.score1 += score1_delta
+    race.score2 += score2_delta
+    race.save()
+
+    return "success"
+
