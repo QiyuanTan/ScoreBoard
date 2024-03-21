@@ -8,7 +8,7 @@ from board.models import *
 
 
 # Create your views here.
-def update_score(request):
+def request_score(request):
     """更新计分板"""
     race = CurrentRace.objects.get(id=1).race
     race_info = {'race': str(race),
@@ -29,6 +29,7 @@ def display_board(request):
     """显示比分面板"""
     return render(request, template_name='board.html')
 
+
 @csrf_exempt
 @staff_member_required
 def update_score(request):
@@ -44,4 +45,3 @@ def update_score(request):
     race.save()
 
     return "success"
-
