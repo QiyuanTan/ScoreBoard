@@ -1,7 +1,7 @@
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import login_required, permission_required
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
 from django.shortcuts import render
+from django.utils import timezone
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
 from board.models import *
@@ -14,6 +14,8 @@ def request_score(request):
     race_info = {'race': str(race),
                  'score1': str(race.team1_score),
                  'score2': str(race.team2_score),
+                 'timer': {'start': race.timer_start.timestamp() if race.timer_start else None,
+                           'stop': race.timer_end.timestamp() if race.timer_end else None}
                  }
     return JsonResponse(race_info)
 
@@ -35,8 +37,8 @@ def display_board(request):
 @staff_member_required
 def update_score(request):
     try:
-        score1_delta = int(request.POST['score1'])
-        score2_delta = int(request.POST['score2'])
+        score1_delta = int(request.POST.get('score1'))
+        score2_delta = int(request.POST.get('score2'))
     except MultiValueDictKeyError:
         return HttpResponseBadRequest()
 
@@ -45,4 +47,29 @@ def update_score(request):
     race.score2 += score2_delta
     race.save()
 
-    return "success"
+    return HttpResponse('success')
+
+
+# @csrf_exempt
+# @staff_member_required
+def set_timer(request):
+    try:
+        action = request.GET.get('action')
+    except MultiValueDictKeyError:
+        return HttpResponseBadRequest()
+
+    race = CurrentRace.objects.get(id=1).race
+    if action == 'start':
+        race.timer_start = timezone.now()
+        race.timer_end = None
+    elif action == 'pause':
+        race.timer_end = timezone.now()
+    elif action == 'resume':
+        delta = race.timer_end - race.timer_start
+        race.timer_start = timezone.now() - delta
+        race.timer_end = None
+    else:
+        return HttpResponseBadRequest()
+    race.save()
+
+    return HttpResponse("success")
