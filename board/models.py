@@ -24,3 +24,6 @@ class Race(models.Model):
 
 class CurrentRace(models.Model):
     race = models.ForeignKey(Race, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return str(self.race)
