@@ -50,11 +50,11 @@ def update_score(request):
     return HttpResponse('success')
 
 
-# @csrf_exempt
-# @staff_member_required
+@csrf_exempt
+@staff_member_required
 def set_timer(request):
     try:
-        action = request.GET.get('action')
+        action = request.POST.get('action')
     except MultiValueDictKeyError:
         return HttpResponseBadRequest()
 
