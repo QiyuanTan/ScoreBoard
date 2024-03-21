@@ -19,7 +19,7 @@ class Race(models.Model):
     start_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.team1} vs {self.team2}"
+        return f"{self.name}: {self.team1} vs {self.team2}"
 
 
 class CurrentRace(models.Model):
