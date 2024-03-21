@@ -15,7 +15,7 @@ def request_score(request):
                  'score1': str(race.team1_score),
                  'score2': str(race.team2_score),
                  'timer': {'start': race.timer_start.timestamp() if race.timer_start else None,
-                           'stop': race.timer_end.timestamp() if race.timer_end else None}
+                           'end': race.timer_end.timestamp() if race.timer_end else None}
                  }
     return JsonResponse(race_info)
 
@@ -54,7 +54,7 @@ def update_score(request):
 @staff_member_required
 def set_timer(request):
     try:
-        action = request.POST.get('action')
+        action = request.GET.get('action')
     except MultiValueDictKeyError:
         return HttpResponseBadRequest()
 
