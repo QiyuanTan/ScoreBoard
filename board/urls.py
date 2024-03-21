@@ -4,7 +4,9 @@ from django.urls import path, include
 from board import views
 
 urlpatterns = [
-    path('update/scoreboard/', views.update_scoreboard, name='update_scoreboard'),
-    path('update/raceinfo/', views.update_race, name='update_race'),
-    path('update/score/', views.update_score, name='update_score'),
+    path('', views.display_board, name='display_board'),
+    path('update_score/', views.update_score, name='update_score'),
+    path('update_raceinfo/', views.update_race, name='update_race'),
+
+    # path('tqy', views.test, name='test')
 ]
