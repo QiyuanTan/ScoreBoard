@@ -21,7 +21,8 @@ def request_score(request):
 def update_race(request):
     """更新比赛信息"""
     race = CurrentRace.objects.get(id=1).race
-    return JsonResponse({'team1': {'name': str(race.team1.name), 'logo_url': race.team1.logo.url},
+    return JsonResponse({'race_name': str(race.name),
+                         'team1': {'name': str(race.team1.name), 'logo_url': race.team1.logo.url},
                          'team2': {'name': str(race.team2.name), 'logo_url': race.team2.logo.url}})
 
 
