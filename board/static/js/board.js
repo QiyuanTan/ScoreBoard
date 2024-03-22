@@ -33,7 +33,7 @@ function updateTeamNames() {
         .then(data => {
             document.getElementById('team1').children[1].innerText = data.team1.name;
             document.getElementById('team2').children[1].innerText = data.team2.name;
-            // document.getElementById('race-name').innerText = data.race_name;
+            document.getElementById('race_name').innerText = data.race;
         })
         .catch(error => console.error('Error fetching team names:', error));
 }

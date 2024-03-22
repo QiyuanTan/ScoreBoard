@@ -4,15 +4,7 @@
     box-sizing: border-box;
 }
 
-/* Style for the outer container */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #ffffff;
-    padding: 20px;
-}
+
 
 /* Style for the timer section */
 .timber {
@@ -21,7 +13,7 @@
     width: 100%;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 3.5em;
+    font-size: 7em;
     color: #333;
 }
 
@@ -32,6 +24,7 @@
 
 /* Existing styles */
 .board {
+    margin-top: -170px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,19 +34,29 @@
     font-family: Arial, sans-serif;
 }
 
-/* More existing styles... */
-
-.top_photo {
-    position: absolute;
-    top: 35px;
-    left: 0;
-    right: 0;
-    margin: auto;
+.container {
+    display: flex;
+    flex-direction: column; /* 确保子元素垂直排列 */
+    justify-content: center; /* 水平居中对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 20px;
 }
+
+.race_name {
+    text-align: center; /* 文本居中对齐 */
+    width: 100%; /* 占满整个容器宽度 */
+    margin-top: 50px;
+    font-size: 7em;
+    color: #333; /* 字体颜色 */
+    z-index: 9999;
+}
+
 
 .text {
     position: absolute;
-    font-size: 12px;
+    font-size: 25px;
     bottom: 0;
     color: #535353;
 }
