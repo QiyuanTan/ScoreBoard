@@ -1,5 +1,4 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
 from board import views
 
@@ -9,6 +8,7 @@ urlpatterns = [
     path('update_raceinfo/', views.update_race, name='update_race'),
     path('set_timer/', views.set_timer, name='set_timer'),
     path('control/', views.control, name='set_timer'),
-
+    path('set_timer/', views.set_timer, name='set_timer'),
+    # path('umpire/', views.umpire, name='umpire'),
     # path('tqy', views.test, name='test')
 ]
