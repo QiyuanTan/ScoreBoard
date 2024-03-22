@@ -68,8 +68,16 @@ def set_timer(request):
         delta = race.timer_end - race.timer_start
         race.timer_start = timezone.now() - delta
         race.timer_end = None
+    elif action == 'reset':
+        race.timer_start = None
+        race.timer_end = None
     else:
         return HttpResponseBadRequest()
     race.save()
 
-    return HttpResponse("success")
+    return HttpResponse(f"timer {action}ed successfully")
+
+
+@staff_member_required
+def control(request):
+    return render(request, 'control.html')
