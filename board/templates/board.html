@@ -4,8 +4,15 @@
     计分板
 {% endblock %}
 
+{% block scripts %}
+    <script src="{% static 'js/board.js' %}"></script>
+{% endblock %}
+
 {% block content %}
     <div class="container">
+        <div id="min"></div>分
+        <div id="sec"></div>秒
+        <div id="msec"></div>
         <div class="chart" id="team1">
             <div></div>
             <div>loading</div>
