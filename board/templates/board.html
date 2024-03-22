@@ -10,10 +10,14 @@
 
 {% block content %}
     <div class="container">
-        <div class="timber">
-            <div id="min"></div>分
-            <div id="sec"></div>秒
-            <div id="msec"></div>
+        <div id="timer" class="timer">
+            <span>比赛已进行：</span><span id="min">--</span>分<span id="sec">--</span>秒
+{#            <span id="msec">--</span>#}
+            <span id="race_status">loading</span>
+        </div>
+        <div class="chart" id="team1">
+            <div></div>
+            <div>loading</div>
         </div>
         <div class="board">
             <div class="chart" id="team1">
@@ -26,7 +30,6 @@
                 <div>loading</div>
             </div>
         </div>
-
-        <div class="text">此计分板由谭期元(原神玩家)和谢鸿哲共同开发</div>
+        <div class="text">此计分板由康福计算机应用社开发</div>
     </div>
 {% endblock %}

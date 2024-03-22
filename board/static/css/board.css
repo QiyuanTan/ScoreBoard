@@ -53,9 +53,9 @@
 
 .text {
     position: absolute;
-    font-size: 30px;
+    font-size: 12px;
     bottom: 0;
-    left: 0;
+    color: #535353;
 }
 
 
@@ -97,4 +97,11 @@
     font-weight: bold;
     margin: 0 20px;
     color: #333;
+}
+
+.timer {
+    position: absolute;
+    font-size: 30px;
+    margin-block: auto;
+    bottom: 10%
 }
