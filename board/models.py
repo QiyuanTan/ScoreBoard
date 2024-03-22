@@ -17,8 +17,8 @@ class Race(models.Model):
     team1_score = models.IntegerField(default=0)
     team2_score = models.IntegerField(default=0)
     start_time = models.DateTimeField(auto_now_add=True)
-    timer_start = models.DateTimeField(blank=True, default=None, null=True)
-    timer_end = models.DateTimeField(null=True, default=None, blank=True)
+    timer_start = models.DateTimeField(blank=True, auto_now_add=True, null=True)
+    timer_end = models.DateTimeField(null=True, auto_now_add=True, blank=True)
 
     def __str__(self):
         return f"{self.name}: {self.team1} vs {self.team2}"
