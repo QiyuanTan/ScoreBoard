@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    比赛控制
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script>
+        function set_timer(act) {
+            $.ajax({
+                url: '/set_timer/',
+                type: 'post',
+                data: {
+                    action: act
+                },
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <button onclick="set_timer('start')">开始</button>
+    <button onclick="set_timer('pause')">暂停</button>
+    <button onclick="set_timer('resume')">恢复</button>
+    <button onclick="set_timer('reset')">重置</button>
+{% endblock %}
+
