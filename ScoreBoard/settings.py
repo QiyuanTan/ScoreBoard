@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-ndwu08^bbcwe2@gg@qed)km3d2y#$0zsw43)ic60w=dx=t&58p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.223', '5c30041r25.vicp.fun', '192.168.10.22']
+ALLOWED_HOSTS = ['192.168.43.223', '5c30041r25.vicp.fun', '192.168.10.22', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://5c30041r25.vicp.fun']
 # Application definition
 

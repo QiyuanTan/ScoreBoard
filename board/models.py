@@ -16,6 +16,8 @@ class Race(models.Model):
     team2 = models.ForeignKey(Team, on_delete=models.PROTECT, related_name='team2')
     team1_score = models.IntegerField(default=0)
     team2_score = models.IntegerField(default=0)
+    team1_total_score = models.IntegerField(default=0)
+    team2_total_score = models.IntegerField(default=0)
     start_time = models.DateTimeField(auto_now_add=True)
     timer_start = models.DateTimeField(blank=True, auto_now_add=True, null=True)
     timer_end = models.DateTimeField(null=True, auto_now_add=True, blank=True)

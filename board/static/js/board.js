@@ -31,8 +31,10 @@ function updateTeamNames() {
     fetch('/update_raceinfo/')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('team1').children[1].innerText = data.team1.name;
-            document.getElementById('team2').children[1].innerText = data.team2.name;
+            document.getElementById('team1').children[2].innerText = data.team1.name;
+            document.getElementById('team2').children[2].innerText = data.team2.name;
+            document.getElementById('team1').children[1].innerText = data.team1.total_score;
+            document.getElementById('team2').children[1].innerText = data.team2.total_score;
             document.getElementById('race_name').innerText = data.race_name;
         })
         .catch(error => console.error('Error fetching team names:', error));
