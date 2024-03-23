@@ -24,8 +24,12 @@ def update_race(request):
     """更新比赛信息"""
     race = CurrentRace.objects.get(id=1).race
     return JsonResponse({'race_name': race.name,
-                         'team1': {'name': str(race.team1.name), 'logo_url': None},
-                         'team2': {'name': str(race.team2.name), 'logo_url': None}})
+                         'team1': {'name': str(race.team1.name),
+                                   'total_score': str(race.team1_total_score),
+                                   'logo_url': None},
+                         'team2': {'name': str(race.team2.name),
+                                   'total_score': str(race.team2_total_score),
+                                   'logo_url': None}})
 
 
 def display_board(request):
@@ -87,7 +91,12 @@ def control(request):
 @staff_member_required
 def exchange(request):
     race = CurrentRace.objects.get(id=1).race
+    if race.team1_score < race.team2_score:
+        race.team2_total_score += 1
+    elif race.team1_score > race.team2_score:
+        race.team1_total_score += 1
     race.team1, race.team2 = race.team2, race.team1
+    race.team1_total_score, race.team2_total_score = race.team2_total_score, race.team1_total_score
     race.team1_score, race.team2_score = 0, 0
     race.timer_start = timezone.now()
     race.timer_end = timezone.now()
