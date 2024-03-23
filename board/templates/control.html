@@ -32,38 +32,79 @@
                 .then(data => {
                     if (data.timer.start === data.timer.end) {
                         document.getElementById('startbtn').classList = "btn btn-primary";
+                        document.getElementById('startbtn').disabled=false;
                         document.getElementById('pausebtn').classList = "btn btn-primary disabled";
+                        document.getElementById('pausebtn').disabled=true;
                         document.getElementById('resumebtn').classList = "btn btn-primary disabled";
+                        document.getElementById('resumebtn').disabled=true;
                     } else if (data.timer.end) {
                         document.getElementById('startbtn').classList = "btn btn-primary disabled";
+                        document.getElementById('startbtn').disabled=true;
                         document.getElementById('pausebtn').classList = "btn btn-primary disabled";
+                        document.getElementById('pausebtn').disabled=true;
                         document.getElementById('resumebtn').classList = "btn btn-primary";
+                        document.getElementById('resumebtn').disabled=false;
                     } else {
                         document.getElementById('startbtn').classList = "btn btn-primary disabled";
+                        document.getElementById('startbtn').disabled=true;
                         document.getElementById('pausebtn').classList = "btn btn-primary";
+                        document.getElementById('pausebtn').disabled=false
                         document.getElementById('resumebtn').classList = "btn btn-primary disabled";
+                        document.getElementById('resumebtn').disabled=true;
                     }
                 })
         }
 
         function updateTeamNames() {
-            fetch('update_raceinfo/')
+            fetch('/update_raceinfo/')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('team1').children[1].innerText = data.team1.name;
-                    document.getElementById('team2').children[1].innerText = data.team2.name;
+                    document.getElementById('team1').children[0].innerText = data.team1.name;
+                    document.getElementById('team2').children[0].innerText = data.team2.name;
                     // document.getElementById('race-name').innerText = data.race_name;
                 })
                 .catch(error => console.error('Error fetching team names:', error));
         }
 
-        function updateScore(team, delta){
+        function updateScoreboard() {
+    fetch('/request_score/')
+        .then(response => response.json())
+        .then(data => {
+
+            {#document.getElementById('team1').children[0].innerText = data.score1;#}
+            {#document.getElementById('team2').children[0].innerText = data.score2;#}
+            timer_start = data.timer.start*1000;
+            timer_end = data.timer.end*1000;
+
+            if(data.timer.start === data.timer.end){
+                document.getElementById('race_status').innerText = "比赛未开始";
+            }
+            else if(data.timer.end){
+                document.getElementById('race_status').innerText = "比赛已暂停";
+
+            }
+            else{
+                document.getElementById('race_status').innerText = "";
+            }
+
+            if (data.race !== lastRace) {
+                lastRace = data.race;
+                updateTeamNames();
+            }
+        })
+        .catch(error => console.error('Error fetching score:', error));
+}
+
+
+let lastRace = null;
+
+        function updateScore(delta1, delta2){
             $.ajax({
-                url: '/set_timer/',
+                url: '/update_score/',
                 type: 'post',
                 data: {
-                    team: team,
-                    delta: delta
+                    score1: delta1,
+                    score2: delta2
                 },
                 success: function (res) {
                     console.log(res);
@@ -71,8 +112,21 @@
             });
         }
 
-        update_race_status();
-        updateTeamNames();
+        function exchange(){
+            $.ajax({
+                url: '/exchange/',
+                type: 'post',
+                data: {},
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+        }
+
+
+    update_race_status();
+    updateTeamNames();
+    setInterval(updateTeamNames, 1000);
     </script>
 {% endblock %}
 
@@ -89,14 +143,42 @@
                             <button onclick="set_timer('start')" class="btn btn-primary" id="startbtn">开始</button>
                             <button onclick="set_timer('pause')" class="btn btn-primary" id="pausebtn">暂停</button>
                             <button onclick="set_timer('resume')" class="btn btn-primary" id="resumebtn">恢复</button>
+                            <button onclick="exchange()" class="btn btn-primary" id="resumebtn">换场</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="score_control">
-            <span id="team1"></span><button onclick="" class="btn btn-primary" id="startbtn">+</button>
+        <div class="" id="race_control" style="top: 10%">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="">
+                        <div class="card-header" id="team1">
+                            <h3 class="card-title">team1</h3>
+                        </div>
+                        <div class="card-body">
+                            <button onclick="updateScore(1,0)" class="btn btn-primary" id="startbtn">+</button>
+                            <button onclick="updateScore(-1,0)" class="btn btn-primary" id="pausebtn">-</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="" id="race_control" style="top: 10%">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="">
+                        <div class="card-header" id="team2">
+                            <h3 class="card-title">team2</h3>
+                        </div>
+                        <div class="card-body">
+                            <button onclick="updateScore(0,1)" class="btn btn-primary" id="startbtn">+</button>
+                            <button onclick="updateScore(0,-1)" class="btn btn-primary" id="pausebtn">-</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/admin" >比赛设置</a>
     </div>
 {% endblock %}
-

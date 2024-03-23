@@ -1,0 +1,87 @@
+已弃置
+{#{% extends 'board.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block style %}#}
+{#    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">#}
+{#{% endblock %}#}
+{##}
+{#{% block scripts %}#}
+{#    <script src="{% static 'js/board.js' %}"></script>#}
+{#    <script src="{% static 'js/jquery.min.js' %}"></script>#}
+{#    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>#}
+{#    <script>#}
+{#        function set_timer(act) {#}
+{#        $.ajax({#}
+{#            url: '/set_timer/',#}
+{#            type: 'post',#}
+{#            data: {#}
+{#                action: act#}
+{#            },#}
+{#            success: function (res) {#}
+{#                //console.log(res);#}
+{#                update_race_status();#}
+{#            }#}
+{#        });#}
+{#        }#}
+{##}
+{#        function update_race_status() {#}
+{#            fetch('/request_score/')#}
+{#                .then(response => response.json())#}
+{#                .then(data => {#}
+{#                    if (data.timer.start === data.timer.end) {#}
+{#                        document.getElementById('startbtn').classList = "btn btn-primary";#}
+{#                        document.getElementById('pausebtn').classList = "btn btn-primary disabled";#}
+{#                        document.getElementById('resumebtn').classList = "btn btn-primary disabled";#}
+{#                    } else if (data.timer.end) {#}
+{#                        document.getElementById('startbtn').classList = "btn btn-primary disabled";#}
+{#                        document.getElementById('pausebtn').classList = "btn btn-primary disabled";#}
+{#                        document.getElementById('resumebtn').classList = "btn btn-primary";#}
+{#                    } else {#}
+{#                        document.getElementById('startbtn').classList = "btn btn-primary disabled";#}
+{#                        document.getElementById('pausebtn').classList = "btn btn-primary";#}
+{#                        document.getElementById('resumebtn').classList = "btn btn-primary disabled";#}
+{#                    }#}
+{#                })#}
+{#        }#}
+{#        update_race_status();#}
+{#    </script>#}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#        <div class="container">#}
+{#        <div id="timer" class="timer">#}
+{#            <span>比赛已进行：</span><span id="min">--</span>分<span id="sec">--</span>秒#}
+{#            <span id="msec">--</span>#}
+{#            <span id="race_status">loading</span>#}
+{#        </div>#}
+{#        <div class="board">#}
+{#            <div class="chart" id="team1">#}
+{#                <div></div>#}
+{#                <div>loading</div>#}
+{#            </div>#}
+{#            <div class="colon">:</div>#}
+{#            <div class="chart" id="team2">#}
+{#                <div></div>#}
+{#                <div>loading</div>#}
+{#            </div>#}
+{#        </div>#}
+{#            <div class="" id="race_control" style="top: 98765430%">#}
+{#            <div class="row">#}
+{#                <div class="col-md-12">#}
+{#                    <div class="card" style="">#}
+{#                        <div class="card-header">#}
+{#                            <h3 class="card-title">比赛控制</h3>#}
+{#                        </div>#}
+{#                        <div class="card-body">#}
+{#                            <button onclick="set_timer('start')" class="btn btn-primary" id="startbtn">开始</button>#}
+{#                            <button onclick="set_timer('pause')" class="btn btn-primary" id="pausebtn">暂停</button>#}
+{#                            <button onclick="set_timer('resume')" class="btn btn-primary" id="resumebtn">恢复</button>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="text">此计分板由康福计算机应用社开发</div>#}
+{#    </div>#}
+{#{% endblock %}#}

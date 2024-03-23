@@ -23,9 +23,9 @@ def request_score(request):
 def update_race(request):
     """更新比赛信息"""
     race = CurrentRace.objects.get(id=1).race
-    return JsonResponse({'race_name': str(race.name),
-                         'team1': {'name': str(race.team1.name), 'logo_url': race.team1.logo.url},
-                         'team2': {'name': str(race.team2.name), 'logo_url': race.team2.logo.url}})
+    return JsonResponse({'race_name': race.name,
+                         'team1': {'name': str(race.team1.name), 'logo_url': None},
+                         'team2': {'name': str(race.team2.name), 'logo_url': None}})
 
 
 def display_board(request):
@@ -43,8 +43,8 @@ def update_score(request):
         return HttpResponseBadRequest()
 
     race = CurrentRace.objects.get(id=1).race
-    race.score1 += score1_delta
-    race.score2 += score2_delta
+    race.team1_score += score1_delta
+    race.team2_score += score2_delta
     race.save()
 
     return HttpResponse('success')
@@ -81,3 +81,15 @@ def set_timer(request):
 @staff_member_required
 def control(request):
     return render(request, 'control.html')
+
+
+@csrf_exempt
+@staff_member_required
+def exchange(request):
+    race = CurrentRace.objects.get(id=1).race
+    race.team1, race.team2 = race.team2, race.team1
+    race.team1_score, race.team2_score = 0, 0
+    race.timer_start = timezone.now()
+    race.timer_end = timezone.now()
+    race.save()
+    return HttpResponse('success')

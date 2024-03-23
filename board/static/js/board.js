@@ -1,5 +1,5 @@
 function updateScoreboard() {
-    fetch('request_score/')
+    fetch('/request_score/')
         .then(response => response.json())
         .then(data => {
 
@@ -28,12 +28,12 @@ function updateScoreboard() {
 }
 
 function updateTeamNames() {
-    fetch('update_raceinfo/')
+    fetch('/update_raceinfo/')
         .then(response => response.json())
         .then(data => {
             document.getElementById('team1').children[1].innerText = data.team1.name;
             document.getElementById('team2').children[1].innerText = data.team2.name;
-            document.getElementById('race_name').innerText = data.race;
+            document.getElementById('race_name').innerText = data.race_name;
         })
         .catch(error => console.error('Error fetching team names:', error));
 }
@@ -50,7 +50,7 @@ function updateTimer(){
         timer = timer_end - timer_start
         document.getElementById('min').innerText = parseInt(timer / (60*1000));
         document.getElementById('sec').innerText = parseInt(timer/1000) % 60;
-        document.getElementById('msec').innerText = parseInt((parseInt(timer) % 1000)/10);
+        // document.getElementById('msec').innerText = parseInt((parseInt(timer) % 1000)/10);
     }
     else {
         timestamp = parseInt(new Date().getTime());

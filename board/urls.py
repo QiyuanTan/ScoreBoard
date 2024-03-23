@@ -9,6 +9,7 @@ urlpatterns = [
     path('control/', views.control, name='control'),
     path('update_score/', views.update_score, name='update_score'),
     path('set_timer/', views.set_timer, name='set_timer'),
+    path('exchange/', views.exchange, name='exchange'),
     # path('umpire/', views.umpire, name='umpire'),
     # path('tqy', views.test, name='test')
 ]
