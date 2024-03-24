@@ -91,14 +91,25 @@ def control(request):
 @staff_member_required
 def exchange(request):
     race = CurrentRace.objects.get(id=1).race
-    if race.team1_score < race.team2_score:
-        race.team2_total_score += 1
-    elif race.team1_score > race.team2_score:
-        race.team1_total_score += 1
+    try:
+        update = str(request.POST.get('update'))
+
+        if update == 'true':
+            if race.team1_score < race.team2_score:
+                race.team2_total_score += 1
+            elif race.team1_score > race.team2_score:
+                race.team1_total_score += 1
+            race.team1_score, race.team2_score = 0, 0
+
+        else:
+            race.team1_score, race.team2_score = race.team2_score, race.team1_score
+
+    except MultiValueDictKeyError:
+        pass
     race.team1, race.team2 = race.team2, race.team1
     race.team1_total_score, race.team2_total_score = race.team2_total_score, race.team1_total_score
-    race.team1_score, race.team2_score = 0, 0
-    race.timer_start = timezone.now()
-    race.timer_end = timezone.now()
+
+    # race.timer_start = timezone.now()
+    # race.timer_end = timezone.now()
     race.save()
     return HttpResponse('success')
