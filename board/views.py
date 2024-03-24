@@ -32,9 +32,14 @@ def update_race(request):
                                    'logo_url': None}})
 
 
+
 def display_board(request):
     """显示比分面板"""
-    return render(request, template_name='board.html')
+    if request.user_agent.is_mobile:
+        return render(request, 'phone.html')
+    else:
+        return render(request, 'board.html')
+
 
 
 @csrf_exempt

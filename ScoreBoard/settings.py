@@ -24,8 +24,8 @@ SECRET_KEY = 'django-insecure-ndwu08^bbcwe2@gg@qed)km3d2y#$0zsw43)ic60w=dx=t&58p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost' ,'192.168.43.223', '5c30041r25.vicp.fun', '192.168.10.22', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://5c30041r25.vicp.fun']
+ALLOWED_HOSTS = ['localhost' ,'192.168.43.223', '5c30041r25.vicp.fun', '192.168.10.22', '127.0.0.1', 'camford.hongzhe.site']
+CSRF_TRUSTED_ORIGINS = ['https://5c30041r25.vicp.fun', 'camford.hongzhe.site']
 # Application definition
 
 INSTALLED_APPS = [
@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_user_agents',
     'board.apps.BoardConfig'
+
 ]
 
 MIDDLEWARE = [
@@ -46,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'ScoreBoard.urls'
