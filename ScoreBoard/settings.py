@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ndwu08^bbcwe2@gg@qed)km3d2y#$0zsw43)ic60w=dx=t&58p
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '192.168.43.223', '5c30041r25.vicp.fun', '192.168.10.22', '127.0.0.1', 'camford.hongzhe.site']
-CSRF_TRUSTED_ORIGINS = ['https://5c30041r25.vicp.fun', 'camford.hongzhe.site']
+CSRF_TRUSTED_ORIGINS = ['https://5c30041r25.vicp.fun', 'http://camford.hongzhe.site']
 # Application definition
 
 INSTALLED_APPS = [

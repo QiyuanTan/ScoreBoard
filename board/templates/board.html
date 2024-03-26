@@ -4,8 +4,8 @@
     计分板
 {% endblock %}
 
-{% block scripts %}
-    <script src="{% static 'js/board.js' %}"></script>
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/board.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,6 @@
         <div class="race_name" id="race_name">loading</div>
         <div id="timer" class="timer">
             <span>比赛已进行：</span><span id="min">--</span>分<span id="sec">--</span>秒
-{#            <span id="msec">--</span>#}
             <span id="race_status">loading</span>
         </div>
         <div class="board">

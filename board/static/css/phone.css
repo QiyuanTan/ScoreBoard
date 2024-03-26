@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.top_info {
+    height: 10vh;
+    background-color: #007bff;
+    color: white;
+    padding: 1vh;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+}
+
+.board {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.chart {
+    height: 40vh;
+    text-align: center;
+    margin: 0.5vh;
+    background-color: white;
+    padding: 1vh;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 15vh;
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.input_text {
+    padding: 1vh 0;
+    text-align: center;
+    height: 10vh;
+}
+
+#userInput, button {
+    height: 7vh;
+}
+
+#userInput {
+    padding: 0.5vh;
+    width: 70%;
+    margin-right: 1vh;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 0.5vh 1vh;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#userInput::placeholder {
+    text-align: center;
+    line-height: 7vh;
+    vertical-align: middle;
+    color: #999;
+    font-size: 1.5em;
+}
+
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.text {
+    padding: 1vh;
+    height: 5vh;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    font-size: 1.5vh;
+}
