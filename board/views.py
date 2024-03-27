@@ -34,16 +34,15 @@ def update_race(request):
 
 def display_board(request):
     """显示比分面板"""
-    # test use, set is_mobile always true
-    """request.user_agent.is_mobile = True
-    if request.user_agent.is_mobile:"""
-    return render(request, 'phone.html')
-    """else:
-        return render(request, 'board.html')"""
+    if request.user_agent.is_mobile:
+        """return render(request, 'phone.html')"""
+    else:
+        return render(request, 'board.html')
+
 
 @csrf_exempt
 @staff_member_required
-def update_score(request, dewn):
+def update_score(request):
     try:
         score1_delta = int(request.POST.get('score1'))
         score2_delta = int(request.POST.get('score2'))
