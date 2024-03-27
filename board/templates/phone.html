@@ -10,11 +10,12 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/phone.css' %}">
+    
 {% endblock %}
 
 {% block content %}
     <div class="top_info">
-        <div class="race_static">loading</div>
+        <div class="race_name" id="race_name">loading</div>
         <div class="timber" id="timber">
             <span>比赛已进行：</span><span id="min">--</span>分<span id="sec">--</span>秒
         </div>
@@ -22,14 +23,14 @@
     
     <div class="board">
         <div class="chart" id="team1">
-            <div></div>
-            <div></div>
-            <div>loading</div>
+            <div class="score"></div>
+            <div class="total_score"></div>
+            <div class="team_name">loading</div>
         </div>
         <div class="chart" id="team2">
-            <div></div>
-            <div></div>
-            <div>loading</div>
+            <div class="score"></div>
+            <div class="total_score"></div>
+            <div class="team_name">loading</div>
         </div>
     </div>
     

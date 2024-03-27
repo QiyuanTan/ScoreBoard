@@ -19,6 +19,7 @@ body, html {
     font-size: 20px;
 }
 
+
 .board {
     height: 75vh;
     display: flex;
@@ -28,15 +29,63 @@ body, html {
     margin: 0;
 }
 
+/* 确保 .chart 的子元素可以继承高度 */
 .chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 沿主轴垂直居中 */
+    align-items: center; /* 沿交叉轴水平居中 */
     height: 40vh;
-    text-align: center;
     margin: 0.5vh;
     background-color: white;
     padding: 1vh;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+.chart > div {
+    margin: auto 0;
+}
+
+
+.score {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 15vh;
+}
+
+.total_score{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 7vh;
+}
+
+
+.team_name {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 3vh;
+}
+
+
+
+
+
 
 .bottom {
     position: fixed;
