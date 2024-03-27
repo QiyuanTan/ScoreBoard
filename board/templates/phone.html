@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    计分板
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/phone.js' %}"></script>
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/phone.css' %}">
+    
+{% endblock %}
+
+{% block content %}
+    <div class="top_info">
+        <div class="race_name" id="race_name">loading</div>
+        <div class="timber" id="timber">
+            <span>比赛已进行：</span><span id="min">--</span>分<span id="sec">--</span>秒
+        </div>
+    </div>
+    
+    <div class="board">
+        <div class="chart" id="team1">
+            <div class="score"></div>
+            <div class="total_score"></div>
+            <div class="team_name">loading</div>
+        </div>
+        <div class="chart" id="team2">
+            <div class="score"></div>
+            <div class="total_score"></div>
+            <div class="team_name">loading</div>
+        </div>
+    </div>
+    
+    <div class="bottom">
+        <div class="input_text">
+            <input type="text" id="userInput" placeholder="为运动员加油打气！">
+            <button onclick="sendText()">发送</button>
+        </div>
+        <div class="text">此计分板由康福计算机应用社谭期元和谢鸿哲开发</div>
+    </div>
+    
+    
+{% endblock %}

@@ -5,16 +5,17 @@
     <title>{% block title %}{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/board.css' %}">
-{#    <link href="{% static 'img/tqy.jpg' %}" rel="icon" type="image/png">#}
-   {% block scripts %}
-   {% endblock %}
+    <link rel="icon" type="img/jpg" href="{% static 'img/KF_logo.jpg' %}">
+    <script src="{% static 'js/timber.js' %}"></script>
+    <script src="{% static 'js/update_information.js' %}"></script>
+    {% block scripts %}{% endblock %}
     {% block style %}
         <style>
             @font-face {
                 font-family: 'JetBrainsMono';
                 src: url('{% static 'fonts/JetBrainsMono-Regular.woff2' %}') format('woff2');
             }
+
             * {
                 font-family: 'JetBrainsMono', Arial, sans-serif;
             }
