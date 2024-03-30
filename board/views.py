@@ -7,37 +7,64 @@ from django.views.decorators.csrf import csrf_exempt
 from board.models import *
 
 
-# Create your views here.
-def request_score(request):
-    """更新计分板"""
+def request_raceinfo(request):
+    """请求全部比赛信息"""
     race = CurrentRace.objects.get(id=1).race
-    race_info = {'race': str(race),
-                 'score1': str(race.team1_score),
-                 'score2': str(race.team2_score),
-                 'timer': {'start': race.timer_start.timestamp() if race.timer_start else None,
-                           'end': race.timer_end.timestamp() if race.timer_end else None}
-                 }
+    race_info = {
+        'race_name': str(race.name),
+        'race': str(race),
+        'team1': {
+            'name': str(race.team1.name),
+            'score': str(race.team1_score),
+            'total_score': str(race.team1_total_score),
+        },
+        'team2': {
+            'name': str(race.team2.name),
+            'score': str(race.team2_score),
+            'total_score': str(race.team2_total_score),
+        },
+        'timer': {
+            'start': race.timer_start.timestamp() if race.timer_start else None,
+            'end': race.timer_end.timestamp() if race.timer_end else None
+        }
+    }
+
     return JsonResponse(race_info)
 
-
-def update_race(request):
+def update_raceinfo(request):
     """更新比赛信息"""
     race = CurrentRace.objects.get(id=1).race
-    return JsonResponse({'race_name': race.name,
-                         'team1': {'name': str(race.team1.name),
-                                   'total_score': str(race.team1_total_score),
-                                   'logo_url': None},
-                         'team2': {'name': str(race.team2.name),
-                                   'total_score': str(race.team2_total_score),
-                                   'logo_url': None}})
+    update_info = {
+        'race': str(race),
+        'team1': {
+            'score': str(race.team1_score),
+        },
+        'team2': {
+            'score': str(race.team2_score),
+        },
+        'timer': {
+            'start': race.timer_start.timestamp() if race.timer_start else None,
+            'end': race.timer_end.timestamp() if race.timer_end else None
+        }
+    }
+    return JsonResponse(update_info)
 
 
 def display_board(request):
     """显示比分面板"""
-    if request.user_agent.is_mobile:
-        """return render(request, 'phone.html')"""
-    else:
-        return render(request, 'board.html')
+    # 手机页面搁置
+    # if request.user_agent.is_mobile:
+    # return render(request, 'phone.html')
+
+    return render(request, 'board.html')
+
+
+@csrf_exempt
+@staff_member_required
+def change_raceinfo(request):
+    """更新比赛信息"""
+    pass
+
 
 
 @csrf_exempt

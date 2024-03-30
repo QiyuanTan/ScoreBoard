@@ -31,3 +31,4 @@ class CurrentRace(models.Model):
 
     def __str__(self):
         return str(self.race)
+
