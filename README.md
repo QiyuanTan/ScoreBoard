@@ -1,5 +1,5 @@
 # ScoreBoard
-一个基于Django的排球计分板
+一个基于Django的计分板，计时器为正记时。
 
 ## 下载
 使用git glone  

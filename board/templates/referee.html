@@ -1,0 +1,134 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    比赛控制
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <style>
+        .container {
+            margin-top: 30px !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .row {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        .race_control .card {
+            width: 100%;
+            margin-top: 15px !important;
+        }
+
+        .card-title {
+            margin-bottom: 0 !important;
+        }
+    </style>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/referee.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    
+        <!-- 比赛控制 -->
+        <div class="race_control">
+            <div class="row">
+                <div class="card" id="race_control">
+                    <div class="card-header">
+                        <h4 class="card-title">比赛控制</h4>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary">换场</button>
+                        <button class="btn btn-primary">清除比分</button>
+                        <a href="/admin">
+                            <button class="btn btn-primary">比赛数据库设置</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 计时器控制 -->
+        <div class="race_control">
+            <div class="row">
+                <div class="card" id="race_control" style="">
+                    <div class="card-header">
+                        <h4 class="card-title" id="timer">计时器控制</h4>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary">开始</button>
+                        <button class="btn btn-primary">停止</button>
+                        <button class="btn btn-primary">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- team1 比分 -->
+        <div class="race_control">
+            <div class="row">
+                <div class="card" id="race_control" style="">
+                    <div class="card-header">
+                        <h4 class="card-title" id="team1_score">比赛控制</h4>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary">-</button>
+                        <button class="btn btn-primary">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="race_control">
+            <div class="row">
+                <div class="card" id="race_control" style="">
+                    <div class="card-header">
+                        <h4 class="card-title" id="team1_total_score">比赛控制</h4>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary">-</button>
+                        <button class="btn btn-primary">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- team2 比分 -->
+        <div class="race_control">
+            <div class="row">
+                <div class="card" id="race_control" style="">
+                    <div class="card-header">
+                        <h4 class="card-title" id="team2_score">比赛控制</h4>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary">-</button>
+                        <button class="btn btn-primary">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="race_control">
+            <div class="row">
+                <div class="card" id="race_control" style="">
+                    <div class="card-header">
+                        <h4 class="card-title" id="team2_total_score">比赛控制</h4>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary">-</button>
+                        <button class="btn btn-primary">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

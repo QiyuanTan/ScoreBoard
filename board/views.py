@@ -59,11 +59,26 @@ def display_board(request):
     return render(request, 'board.html')
 
 
+@staff_member_required
+def referee(request):
+    """裁判页面"""
+    return render(request, template_name='referee.html')
+
 @csrf_exempt
 @staff_member_required
 def change_raceinfo(request):
     """更新比赛信息"""
-    pass
+    try:
+        if request.method == 'POST':
+            pass
+
+    except MultiValueDictKeyError:
+        return HttpResponseBadRequest()
+    race_info = CurrentRace.objects.get(id=1).race
+
+
+
+
 
 
 
