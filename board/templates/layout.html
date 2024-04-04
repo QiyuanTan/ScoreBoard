@@ -6,23 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="img/jpg" href="{% static 'img/KF_logo.jpg' %}">
-    <script src="{% static 'js/timber.js' %}"></script>
-    <script src="{% static 'js/update_information.js' %}"></script>
-    {% block scripts %}{% endblock %}
-    {% block style %}
-        <style>
-            @font-face {
-                font-family: 'JetBrainsMono';
-                src: url('{% static 'fonts/JetBrainsMono-Regular.woff2' %}') format('woff2');
-            }
+    <style>
+        @font-face {
+            font-family: 'JetBrainsMono';
+            src: url('{% static 'fonts/JetBrainsMono-Regular.woff2' %}') format('woff2');
+        }
 
-            * {
-                font-family: 'JetBrainsMono', Arial, sans-serif;
-            }
-        </style>
-    {% endblock %}
+        * {
+            font-family: 'JetBrainsMono', Arial, sans-serif;
+        }
+    </style>
+    {% block style %}{% endblock %}
+    {% block scripts %}{% endblock %}
 </head>
 <body>
-{% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 </body>
 </html>

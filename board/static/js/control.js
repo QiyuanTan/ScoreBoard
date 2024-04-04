@@ -42,7 +42,7 @@ function update_race_status() {
 }
 
 function updateTeamNames() {
-    fetch('/update_raceinfo/')
+    fetch('/request_raceinfo/')
         .then(response => response.json())
         .then(data => {
             document.getElementById('team1').children[0].innerText = data.team1.name;
@@ -53,7 +53,7 @@ function updateTeamNames() {
 }
 
 function updateScoreboard() {
-    fetch('/request_score/')
+    fetch('/update_raceinfo/')
         .then(response => response.json())
         .then(data => {
 
@@ -66,7 +66,7 @@ function updateScoreboard() {
                 document.getElementById('race_status').innerText = "比赛已暂停";
 
             } else {
-                document.getElementById('race_status').innerText = "";
+                document.getElementById('race_status').innerText = "比赛进行中：";
             }
 
             if (data.race !== lastRace) {
