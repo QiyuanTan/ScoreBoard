@@ -19,8 +19,8 @@ class Race(models.Model):
     team1_total_score = models.IntegerField(default=0)
     team2_total_score = models.IntegerField(default=0)
     start_time = models.DateTimeField(auto_now_add=True)
-    timer_start = models.DateTimeField(blank=True, auto_now_add=True, null=True)
-    timer_end = models.DateTimeField(null=True, auto_now_add=True, blank=True)
+    timer_start = models.IntegerField(default=0, blank=True)
+    timer_end = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
         return f"{self.name}: {self.team1} vs {self.team2}"
@@ -31,4 +31,3 @@ class CurrentRace(models.Model):
 
     def __str__(self):
         return str(self.race)
-

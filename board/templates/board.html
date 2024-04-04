@@ -7,7 +7,8 @@
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/board.css' %}">
 {% endblock %}
-{% block script %}
+
+{% block scripts %}
     <script src="{% static 'js/update_information_polling.js' %}"></script>
     <!-- <script src="{% static 'js/update_information_websocket.js' %}"></script> -->
 {% endblock %}
@@ -31,8 +32,8 @@
             </div>
         </div>
         
-        <div id="timer" class="timer">
-            <span id="race_status">loading</span><span id="min">--</span>分<span id="sec">--</span>秒
+        <div class="timer">
+            <div id="timerDisplay" style="font-size: 350%">loading</div>
         </div>
         
         <div class="text">此计分板由康福计算机应用社谭期元和谢鸿哲开发</div>
