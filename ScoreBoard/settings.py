@@ -31,6 +31,7 @@ CSRF_TRUSTED_ORIGINS = ['https://5c30041r25.vicp.fun', 'http://camford.hongzhe.s
 # Application definition
 
 INSTALLED_APPS = [
+    # django default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,8 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_user_agents',
-    'board.apps.BoardConfig'
 
+    # board app
+    'board.apps.BoardConfig',
+
+    # WebSocket
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +78,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ScoreBoard.wsgi.application'
+
+# WebSocket
+ASGI_APPLICATION = 'ScoreBoard.asgi.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
