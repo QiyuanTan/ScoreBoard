@@ -7,9 +7,6 @@ from django.utils import timezone
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
 from board.models import *
-from datetime import datetime
-import pytz
-
 
 
 def request_raceinfo(request):
