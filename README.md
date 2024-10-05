@@ -1,15 +1,15 @@
 [English](README_EN.md) | [简体中文](README.md)
 
 # ScoreBoard
-A Django-based scoreboard with a forward timer.
+基于Django的计分板，计时为正计时
 
 ## Download
-Use git clone
+克隆项目
 ```shell
-git clone https://github.com/tanqiyuaneric/ScoreBoard.git
+git clone https://github.com/QiyuanTan/ScoreBoard.git
 ```  
 或：  
-[点击此链接](https://codeload.github.com/tanqiyuaneric/ScoreBoard/zip/refs/heads/master)  
+[点击此链接](https://codeload.github.com/QiyuanTan/ScoreBoard/zip/refs/heads/master)  
 
 ## 部署
 >需提前安装Python运行环境

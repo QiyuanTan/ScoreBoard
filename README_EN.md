@@ -6,10 +6,10 @@ A scoreboard based on Django with a forward timer.
 ## Download
 Use git clone:  
 ```shell
-git clone https://github.com/tanqiyuaneric/ScoreBoard.git
+git clone https://github.com/QiyuanTan/ScoreBoard.git
 ```  
 Or:  
-[Click this link](https://codeload.github.com/tanqiyuaneric/ScoreBoard/zip/refs/heads/master)  
+[Click this link](https://codeload.github.com/QiyuanTan/ScoreBoard/zip/refs/heads/master)  
 
 ## Deployment
 > Python runtime environment needs to be installed in advance
