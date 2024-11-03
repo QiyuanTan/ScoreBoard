@@ -3,15 +3,20 @@ from django.utils.timezone import *
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
 from django.shortcuts import render
-from django.utils import timezone
+from django.views.decorators.csrf import csrf_protect
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
 from board.models import *
 from datetime import datetime
-import pytz
+from django.middleware.csrf import get_token
 
 
+def csrf_token(request):
+    token = get_token(request)
+    return JsonResponse({'csrfToken': token})
 
+
+@csrf_protect
 def request_raceinfo(request):
     """请求全部比赛信息"""
     race = CurrentRace.objects.get(id=1).race
@@ -36,7 +41,7 @@ def request_raceinfo(request):
 
     return JsonResponse(race_info)
 
-
+@csrf_protect
 def update_raceinfo(request):
     """更新比赛信息"""
     race = CurrentRace.objects.get(id=1).race
@@ -73,7 +78,7 @@ def referee(request):
     return render(request, template_name='referee.html')
 
 
-@csrf_exempt
+@csrf_protect
 @staff_member_required
 def change_raceinfo(request):
     """裁判信息同步至数据库"""
@@ -112,8 +117,6 @@ def change_raceinfo(request):
                 print(data.get('timer_start'))
                 print(data.get('timer_end'))
 
-
-
             if state == 'timer':
                 if data.get('timer_start') or data.get('timer_start') == 0:
                     race.timer_start = data.get('timer_start')
@@ -129,9 +132,6 @@ def change_raceinfo(request):
                 print(type(data.get('timer_end')))
                 print(data.get('timer_start'))
                 print(data.get('timer_end'))
-
-
-
 
             if state == 'score':
                 print('score')
@@ -149,6 +149,7 @@ def change_raceinfo(request):
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
     else:
         return JsonResponse({'status': 'error', 'message': 'Only POST method is accepted'}, status=405)
+
 
 def print_database():
     races = Race.objects.all()

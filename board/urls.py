@@ -10,6 +10,9 @@ urlpatterns = [
     path('request_raceinfo/', views.request_raceinfo, name='request_raceinfo'),
     path('update_raceinfo/', views.update_raceinfo, name='update_raceinfo'),
 
+    # CSRF Token
+    path('csrf_token/', views.csrf_token, name='get_csrf_token'),
+
     # Update information via WebSocket
     # path(),
 
